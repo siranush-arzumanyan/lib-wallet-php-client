@@ -1221,6 +1221,9 @@ class Paysera_WalletApi_Mapper
         $account = new Paysera_WalletApi_Entity_Wallet_Account();
 
         $this->setProperty($account, 'number', $data['number']);
+        if (isset($data['owner_type'])) {
+            $this->setProperty($account, 'ownerType', $data['owner_type']);
+        }
         if (isset($data['owner_title'])) {
             $this->setProperty($account, 'ownerTitle', $data['owner_title']);
         }

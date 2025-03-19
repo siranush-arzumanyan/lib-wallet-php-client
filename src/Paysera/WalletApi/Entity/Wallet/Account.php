@@ -5,11 +5,20 @@
  */
 class Paysera_WalletApi_Entity_Wallet_Account
 {
+    const TYPE_LOCAL = 'local';
+    const TYPE_CARD = 'card';
+
     /**
      * @var string
      * @readonly
      */
     protected $number;
+
+    /**
+     * @var string|null
+     * @readonly
+     */
+    protected $ownerType;
 
     /**
      * @var string|null
@@ -78,6 +87,15 @@ class Paysera_WalletApi_Entity_Wallet_Account
     {
         return $this->number;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getOwnerType()
+    {
+        return $this->ownerType;
+    }
+
 
     /**
      * @return string|null
