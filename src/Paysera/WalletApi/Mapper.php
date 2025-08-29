@@ -247,6 +247,36 @@ class Paysera_WalletApi_Mapper
         return $project;
     }
 
+    public function decodeProjectsList(array $projects)
+        {
+           $result = array();
+           foreach ($projects as $project) {
+               $result[] = $this->decodeProjectEntity($project);
+           }
+           return $result;
+        }
+
+        public function decodeProjectEntity($project)
+        {
+            $projectEntity = new Paysera_WalletApi_Entity_Project();
+            $this->setProperty($projectEntity, 'id', $project['id']);
+            $this->setProperty($projectEntity, 'title', $project['title']);
+            if (!empty($project['description'])) {
+                $this->setProperty($projectEntity, 'description', $project['description']);
+            }
+            if (!empty($project['wallet_id'])) {
+                $this->setProperty($projectEntity, 'wallet_id', $project['wallet_id']);
+            }
+            if (!empty($project['owner_display_name'])) {
+                $this->setProperty($projectEntity, 'owner_display_name', $project['owner_display_name']);
+            }
+            if (!empty($project['status'])) {
+                $this->setProperty($projectEntity, 'status', $project['status']);
+            }
+
+            return $projectEntity;
+        }
+
     /**
      * Decodes payment object from array
      *

@@ -202,6 +202,22 @@ class Paysera_WalletApi_Client_WalletClient extends Paysera_WalletApi_Client_Bas
     }
 
     /**
+     * Gets allowance projects by user ID using API
+     *
+     * @param $userId
+     *
+     * @return Paysera_WalletApi_Entity_Project[]
+     *
+     * @throws Paysera_WalletApi_Exception_ApiException
+     */
+    public function getAllowanceProjects($userId)
+    {
+        Paysera_WalletApi_Util_Assert::isId($userId);
+        $responseData = $this->get('user/'. $userId .'/allowance-projects');
+        return $this->mapper->decodeProjectsList($responseData);
+    }
+
+    /**
      * Gets active allowance for specified wallet using API
      *
      * @param integer $walletId
